@@ -16,8 +16,8 @@
     <!-- Título de la página -->
     <h1>Catálogo de plumillas</h1>
     
-    <!-- Formulario de selección -->
-    <div class="form-container">
+    <!-- Formulario de selección (Ocultable con "Buscar") -->
+    <div class="form-container" id="form-container">
         <h2>Selecciona una marca</h2>
 
         <!-- Segmento "Más comerciales" -->
@@ -35,17 +35,31 @@
         <!-- Contenedor para mostrar la marca seleccionada -->
         <div id="selectedBrand"></div>
 
-        <!-- Selectores de modelo y año -->
-        <select id="model" disabled onchange="updateYears()">
-            <option value="">Selecciona un modelo</option>
-        </select>
-        <select id="year" disabled onchange="showDetails()">
+        <!-- Campo de búsqueda para los modelos -->
+        <div class="input-with-icon">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="modelSearch" placeholder="Buscar modelo..." oninput="filterModels()" disabled>
+        </div>
+
+        <!-- Contenedor de los cuadros de modelos -->
+        <div class="model-container" id="modelContainer">
+            <!-- Aquí se mostrarán los cuadros de los modelos -->
+        </div>
+
+        <!-- Selectores de año -->
+        <select id="year" disabled onchange="checkFormCompletion()">
             <option value="">Selecciona un año</option>
         </select>
 
-        <!-- Resultado de la información -->
-        <div class="output" id="output"></div>
+        <!-- Botón de "Buscar" -->
+        <button id="searchButton" onclick="showDetails()" disabled>Buscar</button>
     </div>
+
+    <!-- Resultado de la búsqueda -->
+    <div class="output" id="output" style="display: none;"></div>
+
+    <!-- Botón de "Nueva búsqueda" -->
+    <button id="newSearchButton" onclick="resetSearch()" style="display: none;">Nueva búsqueda</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script src="js/script.js"></script>
