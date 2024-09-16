@@ -218,3 +218,11 @@ select:focus {
     transform: scale(1.05);
     opacity: 1; /* Vuelve a la opacidad completa al estar activo */
 }
+
+#selectedBrand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+}
+

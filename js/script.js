@@ -48,7 +48,9 @@ function selectBrand(brand) {
     const modelContainer = document.getElementById('modelContainer');
     const catalog = window.catalog[brand];
     
+    // Mostrar la marca seleccionada en negrita y tamaño mayor
     document.getElementById('selectedBrand').innerText = `Marca: ${brand}`;
+    document.getElementById('selectedBrand').style.display = "block"; // Mostrar en caso de que esté oculto
     modelContainer.innerHTML = '';
 
     // Mostrar los modelos en cuadros ordenados alfabéticamente
@@ -148,4 +150,16 @@ function resetSearch() {
     document.getElementById('year').disabled = true;
     document.getElementById('modelSearch').disabled = true;
     document.getElementById('searchButton').disabled = true;
+}
+
+function toggleOtros() {
+    const otrosContainer = document.getElementById('otrosContainer');
+    const displayStyle = otrosContainer.style.display;
+
+    // Alternar la visibilidad del contenedor de otras marcas
+    if (displayStyle === "none" || displayStyle === "") {
+        otrosContainer.style.display = "flex";
+    } else {
+        otrosContainer.style.display = "none";
+    }
 }
