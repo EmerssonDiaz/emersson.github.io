@@ -13,7 +13,6 @@ function processCatalog(data) {
     const masComercialesContainer = document.getElementById('masComercialesContainer');
     const otrosContainer = document.getElementById('otrosContainer');
 
-    // Procesar la data y construir el catálogo
     data.forEach(row => {
         const { MARCA, MODELO, Año_Modelo, Conductor, Pasajero, R, Acople_Rexion, Comentarios, Imagen_Rexion, Segmento } = row;
         
@@ -44,43 +43,51 @@ function processCatalog(data) {
 }
 
 function selectBrand(brand) {
-    const modelSearch = document.getElementById('modelSearch');
+    document.getElementById('brand-stage').style.display = 'none';
+    document.getElementById('model-stage').style.display = 'block';
+
     const modelContainer = document.getElementById('modelContainer');
     const catalog = window.catalog[brand];
-    
-    // Mostrar la marca seleccionada en negrita y tamaño mayor
+
     document.getElementById('selectedBrand').innerText = `Marca: ${brand}`;
-    document.getElementById('selectedBrand').style.display = "block"; // Mostrar en caso de que esté oculto
     modelContainer.innerHTML = '';
 
-    // Mostrar los modelos en cuadros ordenados alfabéticamente
     const sortedModels = Object.keys(catalog).sort();
     sortedModels.forEach(model => {
         modelContainer.innerHTML += `<div class="model" onclick="selectModel('${brand}', '${model}')">${model}</div>`;
     });
 
-    modelSearch.disabled = false; // Habilitar el campo de búsqueda
-
-    // Desplazar automáticamente al contenedor de modelos
+    document.getElementById('modelSearch').disabled = false;
     modelContainer.scrollIntoView({ behavior: 'smooth' });
 }
 
 function selectModel(brand, model) {
+    document.getElementById('model-stage').style.display = 'none';
+    document.getElementById('year-stage').style.display = 'block';
+
     const yearSelect = document.getElementById('year');
     const catalog = window.catalog[brand][model];
 
-    yearSelect.innerHTML = '<option value="">Selecciona un año</option>';
+    document.getElementById('selectedModel').innerText = `Modelo: ${model}`;
 
-    // Llenar el selector de años con los años disponibles
+    yearSelect.innerHTML = '<option value="">Selecciona un año</option>';
     catalog.years.forEach(year => {
         yearSelect.innerHTML += `<option value="${year}">${year}</option>`;
     });
 
-    yearSelect.disabled = false; // Habilitar el selector de años
-    window.selectedModel = { brand, model }; // Guardar el modelo seleccionado
-
-    // Desplazar automáticamente al selector de años
+    yearSelect.disabled = false;
+    window.selectedModel = { brand, model };
     yearSelect.scrollIntoView({ behavior: 'smooth' });
+}
+
+function goBackToBrand() {
+    document.getElementById('model-stage').style.display = 'none';
+    document.getElementById('brand-stage').style.display = 'block';
+}
+
+function goBackToModel() {
+    document.getElementById('year-stage').style.display = 'none';
+    document.getElementById('model-stage').style.display = 'block';
 }
 
 function filterModels() {
@@ -88,7 +95,6 @@ function filterModels() {
     const modelContainer = document.getElementById('modelContainer');
     const models = modelContainer.getElementsByClassName('model');
 
-    // Mostrar/ocultar cuadros de modelos basados en la búsqueda
     for (let i = 0; i < models.length; i++) {
         const model = models[i].innerText.toLowerCase();
         models[i].style.display = model.includes(searchValue) ? 'block' : 'none';
@@ -99,12 +105,13 @@ function checkFormCompletion() {
     const year = document.getElementById('year').value;
     const searchButton = document.getElementById('searchButton');
 
-    // Habilitar el botón "Buscar" solo si ya se ha seleccionado un año
     if (year !== "") {
-        searchButton.disabled = false; // Habilitar el botón
-        searchButton.scrollIntoView({ behavior: 'smooth' }); // Desplazar al botón
+        searchButton.disabled = false;
+        searchButton.style.display = 'block';
+        searchButton.scrollIntoView({ behavior: 'smooth' });
     } else {
-        searchButton.disabled = true; // Deshabilitar el botón
+        searchButton.disabled = true;
+        searchButton.style.display = 'none';
     }
 }
 
@@ -114,17 +121,13 @@ function showDetails() {
     const year = document.getElementById('year').value;
     const details = window.catalog[brand][model];
 
-    // Verifica si hay un enlace válido
     const imageUrl = details.imagen ? details.imagen : '';
 
-    // Ocultar el formulario
-    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('year-stage').style.display = 'none';
 
-    // Mostrar solo el cuadro de detalles
     document.getElementById('output').style.display = 'block';
     document.getElementById('newSearchButton').style.display = 'block';
 
-    // Mostrar detalles del vehículo
     document.getElementById('output').innerHTML = `
         <h3>Detalles de la Plumilla</h3>
         <p><strong>Vehículo:</strong> ${brand} - ${model} - ${year}</p>
@@ -136,27 +139,24 @@ function showDetails() {
         <p class="output-message">¡Esto es lo que necesitas!</p>
     `;
 
-    // Desplazar automáticamente al mensaje de detalles
     document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
 }
 
 function resetSearch() {
-    // Mostrar nuevamente el formulario
-    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('brand-stage').style.display = 'block';
     document.getElementById('output').style.display = 'none';
     document.getElementById('newSearchButton').style.display = 'none';
 
-    // Resetear el formulario
     document.getElementById('year').disabled = true;
     document.getElementById('modelSearch').disabled = true;
     document.getElementById('searchButton').disabled = true;
+    document.getElementById('searchButton').style.display = 'none';
 }
 
 function toggleOtros() {
     const otrosContainer = document.getElementById('otrosContainer');
     const displayStyle = otrosContainer.style.display;
 
-    // Alternar la visibilidad del contenedor de otras marcas
     if (displayStyle === "none" || displayStyle === "") {
         otrosContainer.style.display = "flex";
     } else {

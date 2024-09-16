@@ -16,12 +16,12 @@
     <!-- Título de la página -->
     <h1>Catálogo de plumillas</h1>
     
-    <!-- Formulario de selección (Ocultable con "Buscar") -->
-    <div class="form-container" id="form-container">
+    <!-- Primera etapa: Selección de marca -->
+    <div class="form-container" id="brand-stage">
         <h2>Selecciona una marca</h2>
 
         <!-- Segmento "Más comerciales" -->
-        <h3>Más comerciales</h3>
+        <h3>Top 15 Marcas</h3>
         <div class="brand-container" id="masComercialesContainer">
             <!-- Marcas del segmento "Más comerciales" -->
         </div>
@@ -31,14 +31,17 @@
         <div class="brand-container" id="otrosContainer" style="display: none;">
             <!-- Marcas del segmento "Otros" -->
         </div>
+    </div>
 
-        <!-- Contenedor para mostrar la marca seleccionada -->
+    <!-- Segunda etapa: Selección de modelo -->
+    <div class="form-container" id="model-stage" style="display: none;">
+        <h2>Selecciona un modelo</h2>
         <div id="selectedBrand"></div>
 
         <!-- Campo de búsqueda para los modelos -->
         <div class="input-with-icon">
             <span class="search-icon">🔍</span>
-            <input type="text" id="modelSearch" placeholder="Buscar modelo..." oninput="filterModels()" disabled>
+            <input type="text" id="modelSearch" placeholder="Buscar modelo..." oninput="filterModels()">
         </div>
 
         <!-- Contenedor de los cuadros de modelos -->
@@ -46,14 +49,26 @@
             <!-- Aquí se mostrarán los cuadros de los modelos -->
         </div>
 
+        <!-- Botón para volver a la selección de marcas -->
+        <button onclick="goBackToBrand()">Volver a Marcas</button>
+    </div>
+
+    <!-- Tercera etapa: Selección de año -->
+    <div class="form-container" id="year-stage" style="display: none;">
+        <h2>Selecciona el año del vehículo</h2>
+        <div id="selectedModel"></div>
+
         <!-- Selectores de año -->
-        <select id="year" disabled onchange="checkFormCompletion()">
+        <select id="year" onchange="checkFormCompletion()">
             <option value="">Selecciona un año</option>
         </select>
 
-        <!-- Botón de "Buscar" -->
-        <button id="searchButton" onclick="showDetails()" disabled>Buscar</button>
+        <!-- Botón para volver a la selección de modelos -->
+        <button onclick="goBackToModel()">Volver a Modelos</button>
     </div>
+
+    <!-- Botón de "Buscar" -->
+    <button id="searchButton" onclick="showDetails()" disabled style="display: none;">Buscar</button>
 
     <!-- Resultado de la búsqueda -->
     <div class="output" id="output" style="display: none;"></div>
