@@ -166,6 +166,7 @@ function showDetails() {
     document.getElementById('year-stage').style.display = 'none';
     document.getElementById('output').style.display = 'block';
     document.getElementById('newSearchButton').style.display = 'block';
+    document.getElementById('searchButton').style.display = 'none';
 
     document.getElementById('output').innerHTML = `
         <h3>Detalles de la Plumilla</h3>
@@ -173,7 +174,7 @@ function showDetails() {
         <p><strong>Conductor:</strong> ${details.conductor}</p>
         <p><strong>Pasajero:</strong> ${details.pasajero}</p>
         <p><strong>Acople Rexion - Tipo:</strong> ${details.acople} - ${details.tipo}</p>
-        ${imageUrl ? `<p><strong>Enlace de la Imagen Rexion:</strong> <a href="${imageUrl}" target="_blank">Ver Producto - Click aquí</a></p>` : ''}
+        ${imageUrl ? `<p><strong>Imagen:</strong> <a href="${imageUrl}" target="_blank">Ver Producto - Click aquí</a></p>` : ''}
         <button onclick="goBackToModel()">Volver</button>
     `;
 
