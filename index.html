@@ -44,9 +44,16 @@
             <input type="text" id="modelSearch" placeholder="Buscar modelo..." oninput="filterModels()">
         </div>
 
-        <!-- Contenedor de los cuadros de modelos -->
-        <div class="model-container" id="modelContainer">
-            <!-- Aquí se mostrarán los cuadros de los modelos -->
+        <!-- Segmento "Modelos de Prioridad" -->
+        <h3>Top Modelos</h3>
+        <div class="model-container" id="priorityModelContainer">
+            <!-- Modelos de prioridad -->
+        </div>
+
+        <!-- Segmento "Otros modelos" (desplegable) -->
+        <h3><button id="otrosModelButton" onclick="toggleOtrosModels()">Otros Modelos</button></h3>
+        <div class="model-container" id="otrosModelContainer" style="display: none;">
+            <!-- Otros modelos -->
         </div>
 
         <!-- Botón para volver a la selección de marcas -->

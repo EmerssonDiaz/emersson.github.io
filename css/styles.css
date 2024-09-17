@@ -34,7 +34,8 @@ h3 {
     font-family: 'Quicksand', sans-serif;
 }
 
-.brand-container {
+.brand-container,
+.model-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -42,7 +43,8 @@ h3 {
     margin: 20px 0;
 }
 
-.brand {
+.brand,
+.model {
     width: 100px;
     height: 50px;
     background-color: #ff4747;
@@ -56,13 +58,14 @@ h3 {
     transition: background-color 0.3s ease;
 }
 
-.brand:hover {
+.brand:hover,
+.model:hover {
     background-color: #ff6961;
 }
 
 button {
     font-size: 1.2rem;
-    background-color: #ff4747;
+    background-color: #ff6961;
     color: white;
     padding: 10px;
     border: none;
@@ -111,30 +114,6 @@ button:hover {
     color: #aaa;
 }
 
-.model-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.model {
-    background-color: #ff4747;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    width: 100px;
-    text-align: center;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-}
-
-.model:hover {
-    background-color: #ff6961;
-}
-
 select {
     width: 100%;
     padding: 10px;
@@ -179,13 +158,6 @@ select:focus {
 
 .output a:hover {
     text-decoration: underline;
-}
-
-.output-message {
-    font-size: 1.5rem;
-    color: #333;
-    font-weight: bold;
-    margin-top: 20px;
 }
 
 #searchButton {
