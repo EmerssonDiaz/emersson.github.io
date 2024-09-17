@@ -136,7 +136,6 @@ function showDetails() {
         <p><strong>Acople Rexion:</strong> ${details.acople}</p>
         <p><strong>Tipo:</strong> ${details.tipo}</p>
         ${imageUrl ? `<p><strong>Enlace de la Imagen Rexion:</strong> <a href="${imageUrl}" target="_blank">Ver Producto</a></p>` : ''}
-        <p class="output-message">¡Esto es lo que necesitas!</p>
     `;
 
     document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
