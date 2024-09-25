@@ -108,6 +108,8 @@ function goBackToBrand() {
     document.getElementById('brand-stage').style.display = 'block';
     document.getElementById('output').style.display = 'none';
     document.getElementById('newSearchButton').style.display = 'none';
+    document.getElementById('searchButton').style.display = 'none';
+    
 }
 
 function goBackToModel() {
@@ -117,6 +119,7 @@ function goBackToModel() {
     document.getElementById('model-stage').style.display = 'block';
     document.getElementById('output').style.display = 'none';
     document.getElementById('newSearchButton').style.display = 'none';
+    document.getElementById('searchButton').style.display = 'none';
 }
 
 function clearPreviousData() {
@@ -174,8 +177,8 @@ function showDetails() {
         <p><strong>Conductor:</strong> ${details.conductor}</p>
         <p><strong>Pasajero:</strong> ${details.pasajero}</p>
         <p><strong>Acople Rexion - Tipo:</strong> ${details.acople} - ${details.tipo}</p>
-        ${imageUrl ? `<p><strong>Imagen:</strong> <a href="${imageUrl}" target="_blank">Ver Producto - Click aquí</a></p>` : ''}
-        <button onclick="goBackToModel()">Volver</button>
+        ${imageUrl ? `<button onclick="window.open('${imageUrl}', '_blank')">Ver Producto - Click aquí</button>` : ''}
+        <button class="back-button" onclick="goBackToModel()">← Volver</button>
     `;
 
     document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
