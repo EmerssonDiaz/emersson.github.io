@@ -31,7 +31,7 @@ h1 {
 /* Posición del botón "Volver" */
 .back-button {
     position: absolute;
-    top: 110px;
+    top: 230px;
     left: 50px;
     font-size: 1.4rem;
     background-color: #e60000; /* Rojo claro */
