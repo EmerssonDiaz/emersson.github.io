@@ -172,11 +172,10 @@ function showDetails() {
     document.getElementById('searchButton').style.display = 'none';
 
     document.getElementById('output').innerHTML = `
-        <h3>Detalles de la Plumilla</h3>
-        <p><strong>Vehículo:</strong> ${brand} - ${model} - ${year}</p>
+        <h3></strong> ${brand} - ${model} - ${year}</h3>
+        <p><strong>Plumilla Rexion ${details.acople} - ${details.tipo}</strong></p>
         <p><strong>Conductor:</strong> ${details.conductor}</p>
         <p><strong>Pasajero:</strong> ${details.pasajero}</p>
-        <p><strong>Acople Rexion - Tipo:</strong> ${details.acople} - ${details.tipo}</p>
         <p><strong>Imagen de referencia</strong></p>
         ${imageUrl ? `<button onclick="window.open('${imageUrl}', '_blank')">Ver Producto - Click aquí</button>` : ''}
         <button class="back-button" onclick="goBackToModel()">← Volver</button>
