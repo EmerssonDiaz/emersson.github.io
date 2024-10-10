@@ -16,19 +16,19 @@ function processCatalog(data) {
     const otrosModelContainer = document.getElementById('otrosModelContainer');
 
     data.forEach(row => {
-        const { MARCA, MODELO, Año_Modelo, Conductor, Pasajero, R, Acople_Rexion, Comentarios, Imagen_Rexion, Segmento, Segmento_Modelo, Cantidad_Modelos } = row;
+        const { Marca, Modelo, Año_Modelo, Conductor, Pasajero, R, Acople_Rexion, Comentarios, Imagen_Rexion, Segmento, Segmento_Modelo, Cantidad_Modelos } = row;
         
-        if (!catalog[MARCA]) {
-            catalog[MARCA] = {};
+        if (!catalog[Marca]) {
+            catalog[Marca] = {};
             if (Segmento === "Más comerciales") {
-                masComercialesContainer.innerHTML += `<div class="brand" onclick="selectBrand('${MARCA}')">${MARCA}</div>`;
+                masComercialesContainer.innerHTML += `<div class="brand" onclick="selectBrand('${Marca}')">${Marca}</div>`;
             } else {
-                otrosContainer.innerHTML += `<div class="brand" onclick="selectBrand('${MARCA}')">${MARCA}</div>`;
+                otrosContainer.innerHTML += `<div class="brand" onclick="selectBrand('${Marca}')">${Marca}</div>`;
             }
         }
         
-        if (!catalog[MARCA][MODELO]) {
-            catalog[MARCA][MODELO] = {
+        if (!catalog[Marca][Modelo]) {
+            catalog[Marca][Modelo] = {
                 years: [],
                 conductor: Conductor,
                 pasajero: Pasajero,
@@ -40,7 +40,7 @@ function processCatalog(data) {
             };
         }
 
-        catalog[MARCA][MODELO].years.push(Año_Modelo);
+        catalog[Marca][Modelo].years.push(Año_Modelo);
     });
 
     window.catalog = catalog;
@@ -76,10 +76,10 @@ function selectBrand(brand) {
 function selectModel(brand, model) {
     const catalog = window.catalog[brand][model];
     
-    // Configurar el modelo y marca seleccionados antes de continuar
+    // Configurar el Modelo y Marca seleccionados antes de continuar
     window.selectedModel = { brand, model };
     
-    // Si solo hay un modelo y un año, pasar directamente al detalle de plumillas
+    // Si solo hay un Modelo y un año, pasar directamente al detalle de plumillas
     if (catalog.years.length === 1) {
         window.selectedModel.year = catalog.years[0]; // Asignar el único año
         showDetails(); // Llamamos directamente al detalle
@@ -102,7 +102,7 @@ function selectModel(brand, model) {
 }
 
 function goBackToBrand() {
-    clearPreviousData(); // Limpiar la información cuando volvemos a marcas
+    clearPreviousData(); // Limpiar la información cuando volvemos a Marcas
     document.getElementById('model-stage').style.display = 'none';
     document.getElementById('year-stage').style.display = 'none';
     document.getElementById('brand-stage').style.display = 'block';
@@ -113,9 +113,9 @@ function goBackToBrand() {
 }
 
 function goBackToModel() {
-    clearPreviousData(); // Limpiar la información cuando volvemos a modelos
+    clearPreviousData(); // Limpiar la información cuando volvemos a Modelos
     document.getElementById('year-stage').style.display = 'none';
-    document.getElementById('brand-stage').style.display = 'none'; // Mostrar solo la selección de marcas
+    document.getElementById('brand-stage').style.display = 'none'; // Mostrar solo la selección de Marcas
     document.getElementById('model-stage').style.display = 'block';
     document.getElementById('output').style.display = 'none';
     document.getElementById('newSearchButton').style.display = 'none';
@@ -177,6 +177,7 @@ function showDetails() {
         <p><strong>Conductor:</strong> ${details.conductor}</p>
         <p><strong>Pasajero:</strong> ${details.pasajero}</p>
         <p><strong>Acople Rexion - Tipo:</strong> ${details.acople} - ${details.tipo}</p>
+        <p><strong>Imagen de referencia</strong></p>
         ${imageUrl ? `<button onclick="window.open('${imageUrl}', '_blank')">Ver Producto - Click aquí</button>` : ''}
         <button class="back-button" onclick="goBackToModel()">← Volver</button>
     `;
@@ -187,8 +188,8 @@ function showDetails() {
 function resetSearch() {
     // Limpiar cualquier información de búsqueda anterior y reiniciar la interfaz
     clearPreviousData();
-    document.getElementById('brand-stage').style.display = 'block'; // Mostrar solo la selección de marcas
-    document.getElementById('model-stage').style.display = 'none'; // Ocultar selección de modelos
+    document.getElementById('brand-stage').style.display = 'block'; // Mostrar solo la selección de Marcas
+    document.getElementById('model-stage').style.display = 'none'; // Ocultar selección de Modelos
     document.getElementById('year-stage').style.display = 'none'; // Ocultar selección de año
     document.getElementById('output').style.display = 'none'; // Ocultar la sección de detalles
     document.getElementById('newSearchButton').style.display = 'none'; // Ocultar el botón de nueva búsqueda
